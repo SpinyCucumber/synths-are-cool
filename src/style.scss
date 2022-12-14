@@ -1,0 +1,27 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+body {
+    background-color: #000000;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.vbox {
+    display: flex;
+    flex-direction: column;
+    &.align-center {
+        align-items: center;
+    }
+    &.justify-center {
+        justify-content: center;
+    }
+    &.grow {
+        flex-grow: 1;
+    }
+}
