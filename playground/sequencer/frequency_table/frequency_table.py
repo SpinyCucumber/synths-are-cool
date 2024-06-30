@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Callable, Sequence
 from ..utility import partition
 from ..base_types import Bit
 
@@ -21,8 +21,11 @@ class FrequencyTable:
     def __len__(self):
         return self.length
 
-# Could type input as interface instead
-def construct_frequency_table(input: Sequence[Bit]):
+# Can optionally specify subtable encoder to further encode subtables
+def construct_frequency_table(
+    input: Sequence[Bit],
+    subtable_encoder: Callable[[list[Bit]], Sequence[Bit]] = lambda x: x
+):
 
     # Copy input array as we will be modifying it
     n = len(input)
@@ -47,4 +50,4 @@ def construct_frequency_table(input: Sequence[Bit]):
                 for i in range(start, stop):
                     if subtable[i - start] == 1: array[i] = 0
     
-    return FrequencyTable(subtables, length=n)
+    return FrequencyTable([subtable_encoder(subtable) for subtable in subtables], length=n)
