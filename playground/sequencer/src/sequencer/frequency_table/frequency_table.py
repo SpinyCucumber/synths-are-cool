@@ -51,3 +51,5 @@ def construct_frequency_table(
                     if subtable[i - start] == 1: array[i] = 0
     
     return FrequencyTable([subtable_encoder(subtable) for subtable in subtables], length=n)
+
+__all__ = ["FrequencyTable", "construct_frequency_table"]

@@ -6,3 +6,5 @@ def partition(stop: int, step: int) -> Generator[tuple[int,int], None, None]:
         prev_index = index
         index = min(index + step, stop)
         yield (prev_index, index)
+
+__all__ = ["partition"]

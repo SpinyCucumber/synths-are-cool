@@ -36,3 +36,5 @@ def construct_run_list(input: Sequence[Bit]):
     # Final run
     run_stops.append(n)
     return RunList(run_stops)
+
+__all__ = ["RunList", "construct_run_list"]
