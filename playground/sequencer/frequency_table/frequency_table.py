@@ -38,11 +38,13 @@ class FrequencyTable:
     subtables: list[Sequence[Bit]]
     length: int
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> Bit:
         assert isinstance(index, int)
+        # Raise IndexError for invalid indexes (this allows for loops to function properly)
+        if index < 0 or index >= self.length: raise IndexError()
         for subtable in self.subtables:
-            if subtable[index % len(subtable)]: return True
-        return False
+            if subtable[index % len(subtable)] == 1: return 1
+        return 0
     
     def __len__(self):
         return self.length
