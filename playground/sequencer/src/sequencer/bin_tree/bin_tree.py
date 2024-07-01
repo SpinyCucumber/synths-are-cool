@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Protocol, Sequence
 from math import ceil, log2, pow
 from ..base_types import Bit
-from ..utility import iter_pairs
+from ..utility import iter_pairs, Singleton
 
 class Node(Protocol):
     def get_value(self, index: int, order: int) -> Bit:
@@ -43,8 +43,7 @@ class NonEmptyBinTree:
         return self.length
 
 # Awkward case where input list has no elements
-@dataclass
-class EmptyBinTree:
+class EmptyBinTree(metaclass=Singleton):
 
     def __getitem__(self, _index):
         raise IndexError()
